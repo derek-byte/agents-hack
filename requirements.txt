@@ -3,3 +3,5 @@ exa-py==1.13.1
 python-dotenv==1.0.1 
 uv
 crewai==0.16.1
+beautifulsoup4==4.12.3
+requests==2.31.0

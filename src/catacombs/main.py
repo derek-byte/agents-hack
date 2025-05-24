@@ -3,6 +3,8 @@ import sys
 import warnings
 
 from datetime import datetime
+from catacombs.patent_search import search_patents
+from pprint import pprint
 
 from catacombs.crew import Catacombs
 
@@ -14,12 +16,22 @@ warnings.filterwarnings("ignore", category=SyntaxWarning, module="pysbd")
 # interpolate any tasks and agents information
 
 def run():
+    category = "inventions using AI"
+    results = search_patents(category=category, num_patents=5)
+
+    print("\n=== Patent Search Results ===\n")
+    for i, result in enumerate(results, 1):
+        print(f"Patent {i}:")
+        pprint(result, indent=2)
+        print()
+
     """
     Run the crew.
     """
     inputs = {
         'topic': 'AI LLMs',
-        'current_year': str(datetime.now().year)
+        'current_year': str(datetime.now().year),
+        'patents': results
     }
     
     try:
