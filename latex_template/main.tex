@@ -1,0 +1,43 @@
+% Author Name: José Areia 
+% Author Contact: jose.apareia@gmail.com
+% Version: 1.0.3 - 18/04/2025
+% Public Repository: https://github.com/joseareia/nob-article
+
+% Packages & Document Configurations
+\documentclass[twocolumn]{NobArticle}
+\runninghead{PAPER_TITLE_SHORT}
+\footertext{\textit{Journal X} (2023) 12:684}
+
+% Title
+\title{PAPER_TITLE}
+
+% Authors
+\author{PAPER_AUTHORS}
+
+% Affiliations
+\date{PAPER_AFFILIATIONS}
+
+% Abstract
+\renewcommand{\maketitlehookd}{%
+\begin{abstract}
+    \noindent PAPER_ABSTRACT
+    
+    \medskip
+
+    \small{\textbf{Index Terms:} PAPER_KEYWORDS.}
+\end{abstract}
+}
+
+\begin{document}
+
+\small
+\maketitle
+
+PAPER_CONTENT
+
+\section*{Acknowledgements}
+This research received support during the XXX course, instructed by Professor XXX, PhD at the School of XXX, XXX.
+
+\printbibliography
+
+\end{document}
