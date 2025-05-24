@@ -47,6 +47,13 @@ class Catacombs():
             config=self.agents_config['bestapproach'], # type: ignore[index]
             verbose=True 
         )
+        
+    @agent
+    def exa(self) -> Agent:
+        return Agent(
+            config=self.agents_config['exa'], # type: ignore[index]
+            verbose=True
+        )
 
     # To learn more about structured task outputs,
     # task dependencies, and task callbacks, check out the documentation:
@@ -74,6 +81,12 @@ class Catacombs():
     def bestapproach_task(self) -> Task:
         return Task(
             config=self.tasks_config['bestapproach_task'] # type: ignore[index]
+        )
+        
+    @task
+    def exa_task(self) -> Task:
+        return Task(
+            config=self.tasks_config['exa_task'] # type: ignore[index]
         )
 
     @crew
