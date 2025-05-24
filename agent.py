@@ -19,18 +19,29 @@ class AIAgent:
         # Set up a conversation memory
         self.conversation_history = []
 
-    def search_code(self, query: str) -> List[Dict[str, Any]]:
+    def search_old_patents(self, category: str, num_patents: int = 10) -> List[Dict[str, Any]]:
         """
-        Search for code using Exa's code search capabilities.
+        Search for patents using Exa's search capabilities.
         
         Args:
-            query: The search query
+            category: The category or field of patents to search for (e.g. "artificial intelligence", "biotechnology")
+            num_patents: Number of patents to return (default: 10)
         
         Returns:
-            List of search results
+            List of patent search results
         """
         try:
-            response = self.exa.search(query)
+            # Construct a query that specifically targets patents in the given category
+            query = f"type:patent before:2000 status:patent expired historical {category}"
+            
+            # Use Exa's search with correct parameters
+            response = self.exa.search(
+                query,
+                num_results=num_patents,
+                use_autoprompt=True,
+                include_domains=["https://patents.google.com/"]
+            )
+            
             # Extract just the essential information from the results
             simplified_results = []
             if hasattr(response, 'results'):
@@ -39,12 +50,13 @@ class AIAgent:
                         'title': getattr(result, 'title', 'No title'),
                         'url': getattr(result, 'url', ''),
                         'score': getattr(result, 'score', 0.0),
-                        'text': getattr(result, 'text', '')
+                        'text': getattr(result, 'text', ''),
+                        'metadata': getattr(result, 'metadata', {})
                     }
                     simplified_results.append(simplified_result)
             return simplified_results
         except Exception as e:
-            print(f"Error searching code: {e}")
+            print(f"Error searching patents: {e}")
             return []
 
     def analyze_code(self, code: str) -> str:
@@ -108,7 +120,7 @@ def main():
     agent = AIAgent()
     
     while True:
-        print("\n1. Search code")
+        print("\n1. Search patents")
         print("2. Analyze code")
         print("3. Ask a question")
         print("4. Exit")
@@ -116,8 +128,9 @@ def main():
         choice = input("\nChoose an option (1-4): ")
         
         if choice == "1":
-            query = input("Enter your code search query: ")
-            results = agent.search_code(query)
+            category = input("Enter the category or field of patents to search for: ")
+            num_patents = int(input("Enter the number of patents to return (default: 10): ") or "10")
+            results = agent.search_old_patents(category, num_patents)
             print("\nSearch Results:")
             print(json.dumps(results, indent=2))
             
