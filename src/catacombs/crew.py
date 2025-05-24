@@ -37,7 +37,7 @@ class Catacombs():
     @agent
     def ideation(self) -> Agent:
         return Agent(
-            config=self.agents_config[''], # type: ignore[index]
+            config=self.agents_config['ideation'], # type: ignore[index]
             verbose=True
         )
 
@@ -87,7 +87,7 @@ class Catacombs():
     @task
     def ideation_task(self) -> Task:
         return Task(
-            config=self.tasks_config[''] # type: ignore[index]
+            config=self.tasks_config['ideation_task'] # type: ignore[index]
         )
 
     @crew
