@@ -19,34 +19,75 @@ class Catacombs():
     
     # If you would like to add tools to your agents, you can learn more about it here:
     # https://docs.crewai.com/concepts/agents#agent-tools
+    
     @agent
-    def researcher(self) -> Agent:
+    def approach_creater(self) -> Agent:
         return Agent(
-            config=self.agents_config['researcher'], # type: ignore[index]
+            config=self.agents_config['approach_creater'], # type: ignore[index]
+            verbose=True
+        )
+    
+    @agent
+    def reward_generator(self) -> Agent:
+        return Agent(
+            config=self.agents_config['reward_generator'], # type: ignore[index]
+            verbose=True
+        )
+        
+    @agent
+    def ideation(self) -> Agent:
+        return Agent(
+            config=self.agents_config[''], # type: ignore[index]
             verbose=True
         )
 
-    @agent
-    def reporting_analyst(self) -> Agent:
-        return Agent(
-            config=self.agents_config['reporting_analyst'], # type: ignore[index]
-            verbose=True
-        )
+    # @agent
+    # def researcher(self) -> Agent:
+    #     return Agent(
+    #         config=self.agents_config[''], # type: ignore[index]
+    #         verbose=True
+    #     )
+
+    # @agent
+    # def reporting_analyst(self) -> Agent:
+    #     return Agent(
+    #         config=self.agents_config['reporting_analyst'], # type: ignore[index]
+    #         verbose=True
+    #     )
 
     # To learn more about structured task outputs,
     # task dependencies, and task callbacks, check out the documentation:
     # https://docs.crewai.com/concepts/tasks#overview-of-a-task
-    @task
-    def research_task(self) -> Task:
-        return Task(
-            config=self.tasks_config['research_task'], # type: ignore[index]
-        )
+
+    # @task
+    # def research_task(self) -> Task:
+    #     return Task(
+    #         config=self.tasks_config['research_task'], # type: ignore[index]
+    #     )
+
+    # @task
+    # def reporting_task(self) -> Task:
+    #     return Task(
+    #         config=self.tasks_config['reporting_task'], # type: ignore[index]
+    #         output_file='report.md'
+    #     )
 
     @task
-    def reporting_task(self) -> Task:
+    def approach_task(self) -> Task:
+        return Task (
+            config=self.tasks_config['approach_task'] # type: ignore[index]
+        )
+    
+    @task
+    def reward_task(self) -> Task:
+        return Task (
+            config=self.tasks_config['reward_task'] # type: ignore[index]
+        )
+    
+    @task
+    def ideation_task(self) -> Task:
         return Task(
-            config=self.tasks_config['reporting_task'], # type: ignore[index]
-            output_file='report.md'
+            config=self.tasks_config[''] # type: ignore[index]
         )
 
     @crew
