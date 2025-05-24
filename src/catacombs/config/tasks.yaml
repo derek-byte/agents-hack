@@ -26,3 +26,10 @@ bestapproach_task:
   expected_output: >
     The best solution, problem, and the reward (string)
   agent: bestapproach
+
+exa_task:
+  description: >
+    Given a problem and solution you research all the relevant things on the internet
+  expected_output: >
+    Output everything you found on the internet regarding problem and solution
+  agent: exa
