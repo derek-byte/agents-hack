@@ -5,35 +5,26 @@
 
 % Packages & Document Configurations
 \documentclass[twocolumn]{NobArticle}
-\runninghead{Shortened Running Article Title}
+\runninghead{PAPER_TITLE_SHORT}
 \footertext{\textit{Journal X} (2023) 12:684}
 
 % Title
-\title{An Article Title That Spans Multiple Lines to Show Line Wrapping}
+\title{PAPER_TITLE}
 
 % Authors
-\author{
-    Author One\textsuperscript{1,2}, 
-    Author Two\textsuperscript{3} 
-    and Author Three\textsuperscript{1}
-}
+\author{PAPER_AUTHORS}
 
 % Affiliations
-\date{
-    \textsuperscript{\textbf{1}}
-    School of Computer Science, The University of City \\ \textsuperscript{\textbf{2}}
-    Computer Science Department, The University of City \\ \textsuperscript{\textbf{3}}
-    Computer Science Department, The University of Village
-}
+\date{PAPER_AFFILIATIONS}
 
 % Abstract
 \renewcommand{\maketitlehookd}{%
 \begin{abstract}
-    \noindent Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent porttitor arcu luctus, imperdiet urna iaculis, mattis eros. Pellentesque iaculis odio vel nisl ullamcorper, nec faucibus ipsum molestie. Sed dictum nisl non aliquet porttitor. Etiam vulputate arcu dignissim, finibus sem et, viverra nisl. Aenean luctus congue massa, ut laoreet metus ornare in. Nunc fermentum nisi imperdiet lectus tincidunt vestibulum at ac elit. Nulla mattis nisl eu malesuada suscipit. Aliquam arcu turpis, ultrices sed luctus ac, vehicula id metus. Morbi eu feugiat velit, et tempus augue. Proin ac mattis tortor. Donec tincidunt, ante rhoncus luctus semper, arcu lorem lobortis justo, nec convallis ante quam quis lectus. Aenean tincidunt sodales massa, et hendrerit tellus mattis ac. Sed non pretium nibh. Donec cursus maximus luctus. Vivamus lobortis eros et massa porta porttitor.
+    \noindent PAPER_ABSTRACT
     
     \medskip
 
-    \small{\textbf{Index Terms:} Keyword A, Keyword B, Keyword C.}
+    \small{\textbf{Index Terms:} PAPER_KEYWORDS.}
 \end{abstract}
 }
 
@@ -42,58 +33,7 @@
 \small
 \maketitle
 
-% Introduction
-\section{Introduction}
-\blindtext
-
-% Contribution
-\subsection{Contribution}
-This paper as the follow contributions.
-
-\begin{itemize}
-	\item Arcu eros accumsan lorem, at posuere mi diam sit .
-	\item Fusce fermentum, mi sit amet euismod rutrum.
-	\item Sem lorem molestie diam, iaculis aliquet sapien tortor.
-	\item Pellentesque bibendum pretium aliquet.
-\end{itemize}
-
-% Paper Organisation
-\subsection{Paper Organisation}
-\blindtext
-
-\section{Background}
-\blindtext
-
-\subsection{Literature Review}
-\blindtext This is a reference \citet{Elgamal1985} and this is another \citep{Elgamal1985}.
-
-\section{Methods}
-\blindtext
-
-\begin{figure}[!htpb]
-    \centering
-    % \includegraphics[width=\linewidth]{Figures/PezizaTuberosa.jpg}
-    % \caption{Illustration of the fungus Dumontinia tuberosa by physician, mycologist, and illustrator Charles Tulasne (1816–1884) in the book Selecta Fungorum Carpologia (1861–65). (Name of the original work: Peziza tuberosa parasite on Anemone nemorosa).}
-    % \label{fig:tcanther}
-\end{figure}
-
-\subsection{Method 01}
-\blindtext
-
-\subsubsection{Method 01.A}
-\blindtext
-
-% Results
-\section{Results}
-\blindtext
-
-% Discussion
-\section{Discussion}
-\blindtext
-
-% Conclusion
-\section{Conclusion}
-\blindtext
+PAPER_CONTENT
 
 \section*{Acknowledgements}
 This research received support during the XXX course, instructed by Professor XXX, PhD at the School of XXX, XXX.
