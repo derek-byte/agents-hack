@@ -25,7 +25,7 @@ class IdeationTool(BaseTool):
 
         message = client.messages.create(
             model="claude-4-sonnet-20250514",
-            max_tokens=1024,
+            max_tokens=3000,
             system="You'll be given a problem, solution, and the reward (scale of 1 - 10) telling you how good the current solution is. Be objective and based on the current approach tweak the approach to maximize reward, your goal is to make sure the solution is feasible, and a new approach on how to solve it",
             messages=[
                 {
