@@ -9,40 +9,9 @@ class LatexGenerator:
         self._setup_template_directory()
 
     def _setup_template_directory(self):
-        """Create template directory and necessary files"""
+        """Create template directory if it doesn't exist"""
         if not os.path.exists(self.template_dir):
             os.makedirs(self.template_dir)
-        
-        # Create the NobArticle.cls file
-        with open(f"{self.template_dir}/NobArticle.cls", "w") as f:
-            f.write(r"""
-\NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{NobArticle}[2023/04/18 Nob Article Class]
-\LoadClass[twocolumn]{article}
-
-% Required packages
-\RequirePackage{geometry}
-\RequirePackage{fancyhdr}
-\RequirePackage{titlesec}
-\RequirePackage{biblatex}
-\RequirePackage{hyperref}
-
-% Page geometry
-\geometry{
-    paper=a4paper,
-    top=2.5cm,
-    bottom=2.5cm,
-    left=2.5cm,
-    right=2.5cm
-}
-
-% Header and footer
-\pagestyle{fancy}
-\fancyhf{}
-\renewcommand{\headrulewidth}{0pt}
-\newcommand{\runninghead}[1]{\fancyhead[C]{#1}}
-\newcommand{\footertext}[1]{\fancyfoot[C]{#1}}
-""")
 
     def generate_latex(self, content, title="Research Paper", authors=None, affiliations=None, keywords=None):
         """Generate LaTeX document with the given content"""
@@ -53,44 +22,42 @@ class LatexGenerator:
         if keywords is None:
             keywords = ["Keyword1", "Keyword2"]
 
-        template_vars = {
-            'title': title,
-            'year': datetime.now().year,
-            'authors': ", ".join(authors),
-            'affiliations': r" \\ ".join(affiliations),
-            'abstract': content[:500],
-            'keywords': ", ".join(keywords),
-            'content': content
-        }
+        # Format authors with superscripts
+        formatted_authors = []
+        for i, author in enumerate(authors, 1):
+            formatted_authors.append(f"{author}\\textsuperscript{{{i}}}")
+        authors_str = ", ".join(formatted_authors)
 
-        latex_template = r"""
-\documentclass[twocolumn]{NobArticle}
-\runninghead{%(title)s}
-\footertext{\textit{Journal X} (%(year)s)}
+        # Format affiliations with superscripts
+        formatted_affiliations = []
+        for i, affiliation in enumerate(affiliations, 1):
+            formatted_affiliations.append(f"\\textsuperscript{{\\textbf{{{i}}}}} {affiliation}")
+        affiliations_str = " \\\\ ".join(formatted_affiliations)
 
-\title{%(title)s}
-\author{%(authors)s}
-\date{%(affiliations)s}
+        # Read the template file
+        with open(f"{self.template_dir}/main.tex", "r") as f:
+            template = f.read()
 
-\renewcommand{\maketitlehookd}{%%
-\begin{abstract}
-    \noindent %(abstract)s
-    
-    \medskip
-    \small{\textbf{Index Terms:} %(keywords)s.}
-\end{abstract}
-}
-
-\begin{document}
-\small
-\maketitle
-
-%(content)s
-
-\end{document}
-"""
-        # Apply the template variables
-        latex_content = latex_template % template_vars
+        # Replace the placeholders in the template
+        latex_content = template.replace(
+            "An Article Title That Spans Multiple Lines to Show Line Wrapping",
+            title
+        ).replace(
+            "Author One\\textsuperscript{1,2}, \n    Author Two\\textsuperscript{3} \n    and Author Three\\textsuperscript{1}",
+            authors_str
+        ).replace(
+            "\\textsuperscript{\\textbf{1}}\n    School of Computer Science, The University of City \\\\ \\textsuperscript{\\textbf{2}}\n    Computer Science Department, The University of City \\\\ \\textsuperscript{\\textbf{3}}\n    Computer Science Department, The University of Village",
+            affiliations_str
+        ).replace(
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent porttitor arcu luctus, imperdiet urna iaculis, mattis eros. Pellentesque iaculis odio vel nisl ullamcorper, nec faucibus ipsum molestie. Sed dictum nisl non aliquet porttitor. Etiam vulputate arcu dignissim, finibus sem et, viverra nisl. Aenean luctus congue massa, ut laoreet metus ornare in. Nunc fermentum nisi imperdiet lectus tincidunt vestibulum at ac elit. Nulla mattis nisl eu malesuada suscipit. Aliquam arcu turpis, ultrices sed luctus ac, vehicula id metus. Morbi eu feugiat velit, et tempus augue. Proin ac mattis tortor. Donec tincidunt, ante rhoncus luctus semper, arcu lorem lobortis justo, nec convallis ante quam quis lectus. Aenean tincidunt sodales massa, et hendrerit tellus mattis ac. Sed non pretium nibh. Donec cursus maximus luctus. Vivamus lobortis eros et massa porta porttitor.",
+            content[:500]  # Use first 500 chars for abstract
+        ).replace(
+            "Keyword A, Keyword B, Keyword C",
+            ", ".join(keywords)
+        ).replace(
+            "\\blindtext",
+            content  # Replace all blindtext with actual content
+        )
         
         # Write the LaTeX content to a file
         with open(f"{self.template_dir}/paper.tex", "w") as f:
