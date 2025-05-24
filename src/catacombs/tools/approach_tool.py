@@ -29,7 +29,7 @@ class ApproachTool(BaseTool):
         
         message = client.messages.create(
             model="claude-4-sonnet-20250514",
-            max_tokens=1024,
+            max_tokens=3000,
             system="Your job is to take the idea given to you and generate 5 different approaches to solve it. An idea and 1 non-optimal approach will be given to you. Your job is to analyze and think of why the approach given to you doesn't work and generate 5 approaches that would solve the idea in a feasible manner.",
             messages=[
                 {

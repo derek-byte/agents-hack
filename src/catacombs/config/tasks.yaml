@@ -20,3 +20,9 @@ ideation_task:
     A further refined solution (string)
   agent: ideation
   
+bestapproach_task:
+  description: >
+    Given a list of ideas, consider the reward score and reason about the best idea
+  expected_output: >
+    The best solution, problem, and the reward (string)
+  agent: bestapproach
