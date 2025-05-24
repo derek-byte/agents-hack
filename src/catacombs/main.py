@@ -5,6 +5,7 @@ import warnings
 from datetime import datetime
 from catacombs.patent_search import search_patents
 from pprint import pprint
+import json
 
 from catacombs.crew import Catacombs
 
@@ -31,7 +32,7 @@ def run():
     inputs = {
         'topic': 'AI LLMs',
         'current_year': str(datetime.now().year),
-        'patents': results
+        'patents': json.dumps(results[0])
     }
     
     try:
