@@ -1,4 +1,14 @@
-# Catacombs Crew
+# Catacombs
+
+A Catacomb is an underground cemetery that consists of tombs constructed by the Ancient Romans
+
+Our agent takes dead ideas and brings them to the 21st century with a new approach
+
+# Architecture
+
+
+
+<!-- # Catacombs Crew
 
 Welcome to the Catacombs Crew project, powered by [crewAI](https://crewai.com). This template is designed to help you set up a multi-agent AI system with ease, leveraging the powerful and flexible framework provided by crewAI. Our goal is to enable your agents to collaborate effectively on complex tasks, maximizing their collective intelligence and capabilities.
 
@@ -52,4 +62,4 @@ For support, questions, or feedback regarding the Catacombs Crew or crewAI.
 - [Join our Discord](https://discord.com/invite/X4JWnZnxPb)
 - [Chat with our docs](https://chatg.pt/DWjSBZn)
 
-Let's create wonders together with the power and simplicity of crewAI.
+Let's create wonders together with the power and simplicity of crewAI. -->

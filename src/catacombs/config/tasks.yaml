@@ -1,17 +1,22 @@
-research_task:
+approach_task:
   description: >
-    Conduct a thorough research about {topic}
-    Make sure you find any interesting and relevant information given
-    the current year is {current_year}.
+    Make 5 approaches for title when given the description
+    Make sure to think about why the current idea didn't work and 
   expected_output: >
-    A list with 10 bullet points of the most relevant information about {topic}
-  agent: researcher
+    A list of 5 approaches to solve
+  agent: approach_creater
 
-reporting_task:
+reward_task:
   description: >
-    Review the context you got and expand each topic into a full section for a report.
-    Make sure the report is detailed and contains any and all relevant information.
+    When given a solution for problem reason how good the solution is and rate it on a scale of 1 to 10
   expected_output: >
-    A fully fledged report with the main topics, each with a full section of information.
-    Formatted as markdown without '```'
-  agent: reporting_analyst
+    An integer between 1 and 10 (inclusive)
+  agent: reward_generator
+
+ideation_task:
+  description: >
+    Given a solution for problem and reward the solution is refined further to maximize reward
+  expected_output: >
+    A further refined solution (string)
+  agent: ideation
+  
