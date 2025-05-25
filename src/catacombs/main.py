@@ -36,7 +36,10 @@ def run():
     }
     
     try:
-        Catacombs().crew().kickoff(inputs=inputs)
+        output = Catacombs().crew().kickoff(inputs=inputs)
+        print(output)
+        with open("test.txt", "w") as file:
+            file.write(json.dumps(output.json))
     except Exception as e:
         raise Exception(f"An error occurred while running the crew: {e}")
 
